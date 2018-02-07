@@ -15,13 +15,18 @@ export const validate = (values, props) => {
 			if (!values[keys[0]]) {
 				errors[keys[0]] = `${props.fields[index].label} is required`;
 			}
-		} else if (values[keys[0]] && !values[keys[0]][keys[1]]) {
+		} else if (
+			!values[keys[0]] ||
+			(values[keys[0]] && !values[keys[0]][keys[1]])
+		) {
 			if (!errors[keys[0]]) errors[keys[0]] = {};
 			errors[keys[0]][keys[1]] = `${
 				props.fields[index].label
 			} is required`;
 		}
 	});
+
+	console.log(errors);
 
 	return errors;
 };
