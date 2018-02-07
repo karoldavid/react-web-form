@@ -1,6 +1,9 @@
 const express = require('express');
+const cors = require('cors')
 const app = express();
 const bodyParser = require('body-parser')
+
+app.options('*', cors())
 
 app.use(bodyParser.json());
 
@@ -8,11 +11,11 @@ const port = process.env.PORT || 5000;
 const countries = [{id: "germany", name: "Germany"}, {id: "netherlands", name: "Netherlands"}];
 let tasks = [];
 
-app.get('/tasks', (req, res) => {
+app.get('/tasks', cors(), (req, res) => {
   res.json(tasks);
 });
 
-app.post('/tasks', (req, res) => {
+app.post('/tasks', cors(), (req, res) => {
   const { body } = req;
 
   if (!body.delivery_at
@@ -51,7 +54,7 @@ app.post('/tasks', (req, res) => {
   res.status(201).json(task);
 });
 
-app.get('/countries', (req, res) => {
+app.get('/countries', cors(), (req, res) => {
   res.json(countries);
 });
 
