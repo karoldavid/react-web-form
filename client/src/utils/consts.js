@@ -12,8 +12,12 @@ export const task = {
 };
 
 export const TASK_FORM_FIELDS = [
-	{ name: "recipient.name", label: "Name", required: true },
-	{ name: "recipient.zipcode", label: "Zip Code", required: true },
-	{ name: "recipient.street", label: "Street", required: true },
-	{ name: "delivery_at", label: "Delivery At", required: true }
+	{ name: "delivery_at", label: "Delivery At", required: true },
+	{ name: "recipient.name", label: "Recipient Name", required: true },
+	{ name: "recipient.zipcode", label: "Recipient Zip Code", required: true },
+	{ name: "recipient.street", label: "Recipient Street", required: true },
+	{ name: "recipient.city", label: "Recipient City", required: true },
+	{ name: "recipient.state", label: "Recipient State", required: true },
+	{ name: "recipient.country", label: "Recipient Country", required: true },
+	{ name: "recipient.phone", label: "Recipient Phone", required: true }
 ];

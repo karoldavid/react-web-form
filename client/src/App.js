@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "./actions";
 import "./App.css";
-import { RaisedButton } from "material-ui";
 import TaskForm from "./components/TaskForm";
 
 class App extends Component {
