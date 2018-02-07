@@ -6,7 +6,7 @@ const headers = {
 };
 
 export const getAllTasks = () => {
-	return fetch(`${api}/tasks`, { ...headers })
+	return fetch(`${api}/tasks`, { headers })
 		.then(res => res.json())
 		.then(data => data);
 };

@@ -3,21 +3,11 @@ import { connect } from "react-redux";
 import * as actions from "./actions";
 import "./App.css";
 import { RaisedButton } from "material-ui";
-import { task } from "./utils/consts";
+import TaskForm from "./components/TaskForm";
 
 class App extends Component {
-  componentDidMount() {
-    this.props.saveTask(task)
-  }
   render() {
-    return (
-      <div className="App">
-        <RaisedButton
-          label="Get Tasks"
-          onClick={() => this.props.fetchTasks()}
-        />
-      </div>
-    );
+    return <TaskForm />;
   }
 }
 

@@ -10,3 +10,10 @@ export const task = {
 		phone: "+49 176 22222222"
 	}
 };
+
+export const TASK_FORM_FIELDS = [
+	{ name: "recipient.name", label: "Name", required: true },
+	{ name: "recipient.zipcode", label: "Zip Code", required: true },
+	{ name: "recipient.street", label: "Street", required: true },
+	{ name: "delivery_at", label: "Delivery At", required: true }
+];
