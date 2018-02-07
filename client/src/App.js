@@ -1,27 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { connect } from "react-redux";
-import logo from './logo.svg';
-import './App.css';
+import * as actions from "./actions";
+import "./App.css";
+import { RaisedButton } from "material-ui";
 
 class App extends Component {
-
-  componentDidMount() {
-
-  }
-
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <RaisedButton
+          label="Get Tasks"
+          onClick={() => this.props.fetchTasks()}
+        />
       </div>
     );
   }
 }
 
-export default connect()(App);
+export default connect(null, actions)(App);
