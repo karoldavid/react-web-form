@@ -7,6 +7,9 @@ export const fetchTasks = () => dispatch => {
 		.then(data => dispatch({ type: FETCH_TASKS_SUCCESS, payload: data }));
 };
 
-export const saveTask = task => dispatch => {
-	api.saveTask(task).then(dispatch({ type: POST_TASK_SUCCESS }));
+export const saveTask = (task, callback) => dispatch => {
+	api.saveTask(task).then(() => {
+		callback();
+		dispatch({ type: POST_TASK_SUCCESS });
+	});
 };

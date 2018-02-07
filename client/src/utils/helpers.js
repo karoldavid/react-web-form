@@ -26,7 +26,5 @@ export const validate = (values, props) => {
 		}
 	});
 
-	console.log(errors);
-
 	return errors;
 };

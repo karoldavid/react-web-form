@@ -4,11 +4,12 @@ import { reduxForm } from "redux-form";
 import FormFields from "./FormFields";
 import { Card, CardTitle, FlatButton } from "material-ui";
 import { validate } from "../utils/helpers";
+import * as actions from "../actions"
 
 class TaskForm extends Component {
 	onFormSubmit = params => {
 		console.log(params);
-		//this.props.reset();
+		this.props.saveTask(params, () => this.props.reset());
 	};
 
 	render() {
@@ -39,4 +40,4 @@ class TaskForm extends Component {
 export default reduxForm({
 	form: "taskForm",
 	validate
-})(connect()(TaskForm));
+})(connect(null, actions)(TaskForm));
