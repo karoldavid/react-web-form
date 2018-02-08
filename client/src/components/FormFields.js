@@ -47,16 +47,19 @@ export default class FormFields extends Component {
 		);
 	};
 
-	renderDropdownList = ({ input, data, valueField }) => {
+	renderDropdownList = ({ label, input, data, valueField }) => {
 		console.log(input);
 		return (
+			<div style={{marginTop: 20}}>
+			<label>{label}</label>
 			<DropdownList
-				style={{ width: 400 }}
+				style={{ width: 400, textTransform: "capitalize" }}
 				{...input}
 				data={data}
-				value={input.value ? input.value : data[0]}
+				value={input[valueField] ? input[valueField] : data[0]}
 				onChange={input.onChange}
 			/>
+			</div>
 		);
 	};
 
@@ -77,6 +80,7 @@ export default class FormFields extends Component {
 						component={this.renderDropdownList}
 						data={data}
 						valueField="value"
+						label={label}
 					/>
 				) : (
 					<Field
