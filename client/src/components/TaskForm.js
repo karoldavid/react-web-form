@@ -58,7 +58,7 @@ class TaskForm extends Component {
 	}
 }
 
-const mapStateToProps = ({ task: { message, open }}) => {
+const mapStateToProps = ({ task: { message, open } }) => {
 	return {
 		message,
 		open

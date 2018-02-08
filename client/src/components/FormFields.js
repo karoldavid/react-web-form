@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Field } from "redux-form";
-import { TextField } from "material-ui";
+import { TextField, SelectField, MenuItem } from "material-ui";
 import Moment from "moment";
 import momentLocalizer from "react-widgets-moment";
 import DateTimePicker from "react-widgets/lib/DateTimePicker";
@@ -46,24 +46,37 @@ export default class FormFields extends Component {
 		);
 	};
 
-	renderDropdownList = ({ label, input, data, valueField, meta: { touched, error } }) => {
+	renderSelectField = ({
+		input,
+		label,
+		data,
+		name,
+		valueField,
+		meta: { touched, error },
+	}) => {
 		return (
-			<div style={{marginTop: 20}}>
-			<label>{label}</label>
-			<DropdownList
-				style={{ width: 400, textTransform: "capitalize" }}
-				{...input}
-				data={data}
-				value={input[valueField] ? input[valueField] : touched && error ? error : ""}
-				onChange={input.onChange}
-			/>
-			</div>
+			<SelectField
+				style={{ textTransform: "capitalize" }}
+				name={name}
+				hintText={label}
+				floatingLabelText={label}
+				errorText={touched && error}
+				value={input.value}
+				onChange={(event, index, value) => {
+					console.log(value);
+					input.onChange(value);
+				}}
+			>
+				{data.map((item, index) => (
+					<MenuItem key={index} value={item} primaryText={item} />
+				))}
+			</SelectField>
 		);
 	};
 
 	makeFields = ({ name, label, type, data }) => {
 		return (
-			<div key={name}>
+			<div key={name} style={{ width: 400 }}>
 				{type === "dateTime" ? (
 					<Field
 						name={name}
@@ -73,12 +86,13 @@ export default class FormFields extends Component {
 					/>
 				) : type === "select" ? (
 					<Field
-						style={{ width: 400 }}
 						name={name}
-						component={this.renderDropdownList}
+						component={this.renderSelectField}
+						hintText={label}
+						label={label}
 						data={data}
 						valueField="value"
-						label={label}
+						//errorText={touched && error}
 					/>
 				) : (
 					<Field
