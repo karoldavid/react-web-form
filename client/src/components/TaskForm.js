@@ -4,16 +4,19 @@ import { reduxForm } from "redux-form";
 import FormFields from "./FormFields";
 import { Card, CardTitle, RaisedButton } from "material-ui";
 import { validate } from "../utils/helpers";
-import * as actions from "../actions"
+import * as actions from "../actions";
+import { withRouter } from "react-router-dom";
 
 class TaskForm extends Component {
 	onFormSubmit = params => {
-		console.log(params);
-		this.props.saveTask(params, () => this.props.reset());
+		this.props.saveTask(params, () => {
+			this.props.reset();
+			this.props.history.push("/blankpage");
+		});
 	};
 
 	render() {
-		const { fields, handleSubmit } = this.props;
+		const { fields, handleSubmit, history } = this.props;
 		return (
 			<div style={{ display: "flex", justifyContent: "center" }}>
 				<Card
@@ -29,8 +32,19 @@ class TaskForm extends Component {
 					<CardTitle title="Create a Task" />
 					<form onSubmit={handleSubmit(this.onFormSubmit)}>
 						<FormFields fields={fields} />
-						<div style={{ display: "flex", "justifyContent": "flex-end", marginTop: 10, marginBottom: 10 }}>
-							<RaisedButton type="submit" label="Submit" primary />
+						<div
+							style={{
+								display: "flex",
+								justifyContent: "flex-end",
+								marginTop: 10,
+								marginBottom: 10
+							}}
+						>
+							<RaisedButton
+								type="submit"
+								label="Submit"
+								primary
+							/>
 						</div>
 					</form>
 				</Card>
@@ -42,4 +56,4 @@ class TaskForm extends Component {
 export default reduxForm({
 	form: "taskForm",
 	validate
-})(connect(null, actions)(TaskForm));
+})(withRouter(connect(null, actions)(TaskForm)));
