@@ -14,17 +14,21 @@ export const fetchTasks = () => dispatch => {
 export const saveTask = (task, callback) => dispatch => {
 	api
 		.saveTask(task)
-		.then(() => {
-			dispatch({
-				type: POST_TASK_SUCCESS,
-				payload: "Form successfully submitted!"
-			});
-			callback();
+		.then(response => {
+			console.log(response)
+			if (!response.error) {
+				dispatch({
+					type: POST_TASK_SUCCESS,
+					payload: "Form successfully submitted!"
+				});
+				callback();
+			} else {
+				dispatch({
+					type: POST_TASK_FAIL,
+					payload: "Form sumbission failed."
+				});
+				console.error(response.error);
+			}
 		})
-		.catch(() =>
-			dispatch({
-				type: POST_TASK_FAIL,
-				payload: "Form submission failed!"
-			})
-		);
+		.catch(error => console.error(error));
 };

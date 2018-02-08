@@ -38,7 +38,7 @@ export default class FormFields extends Component {
 					style={{ width: 400 }}
 					onChange={onChange}
 					placeholder={error && touched ? error : label}
-					format="DD MMM YYYY HH:MM"
+					format="DD MMM YYYY HH:mm"
 					time={showTime}
 					value={!value ? null : new Date(value)}
 				/>

@@ -9,7 +9,6 @@ import { withRouter } from "react-router-dom";
 
 class TaskForm extends Component {
 	onFormSubmit = params => {
-		console.log(params)
 		this.props.saveTask(params, () => {
 			this.props.reset();
 			this.props.history.push("/redirectpage");

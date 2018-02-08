@@ -1,4 +1,4 @@
-const api = "http://localhost:5000";
+const api = process.env.PORT || "http://localhost:5000";
 
 const headers = {
 	Accept: "application/json",
@@ -22,5 +22,5 @@ export const saveTask = data => {
 		body: JSON.stringify(data)
 	})
 		.then(res => res.json())
-		.then(data => data);
+		.then(data => data)
 };
