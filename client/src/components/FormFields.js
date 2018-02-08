@@ -25,14 +25,26 @@ export default class FormFields extends Component {
 		/>
 	);
 
-	renderDateTimePicker = ({ input: { onChange, value }, showTime }) => (
-		<DateTimePicker
-			onChange={onChange}
-			format="DD MMM YYYY"
-			time={showTime}
-			value={!value ? null : new Date(value)}
-		/>
-	);
+	renderDateTimePicker = ({
+		input: { onChange, value },
+		label,
+		showTime,
+		meta: { touched, error }
+	}) => {
+		console.log(error)
+		return (
+			<div>
+				<DateTimePicker
+					style={{ width: 400 }}
+					onChange={onChange}
+					placeholder={error && touched ? error : label}
+					format="DD MMM YYYY HH:MM"
+					time={showTime}
+					value={!value ? null : new Date(value)}
+				/>
+			</div>
+		);
+	};
 
 	makeFields = ({ name, label, type }) => {
 		return (
@@ -40,13 +52,13 @@ export default class FormFields extends Component {
 				{type === "dateTime" ? (
 					<Field
 						name={name}
-						showTime={false}
+						showTime
 						component={this.renderDateTimePicker}
+						label={label}
 					/>
 				) : (
 					<Field
 						style={{ width: 400 }}
-						key={name}
 						name={name}
 						component={this.renderTextField}
 						label={label}
