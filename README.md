@@ -1,12 +1,16 @@
-# Fliit Admin (Frontend Challenge)
+# React Admin Web Form
 
-## Running the project
+Creates a task and sends the form data to the backend.
 
-```
-npm i nodemon -g
-yarn
-yarn dev
-```
+## Installing
+
+* Clone or download the repository
+* `cd`into the project direcetory
+* Run `npm install` to install dependencies
+* `cd` into the client directory (./client/)
+* Run `npm install` to install dependencies
+* Run `npm run dev` to start the server and the app
+* In your browser's address bar navigate to `localhost:3000`
 
 ## Servers
 
@@ -16,10 +20,6 @@ The servers should start at the following addresses:
   * http://localhost:3000
 * Backend
   * http://localhost:5000
-
-## Frontend
-
-The frontend part of the project should be developed inside the [client directory](./client/).
 
 ## Backend examples
 
@@ -37,3 +37,21 @@ curl http://localhost:5000/tasks
 ```
 curl http://localhost:5000/countries
 ```
+
+## Built With
+
+* [Create React App](https://github.com/facebookincubator/create-react-app)
+* [React Redux](https://github.com/reactjs/react-redux)
+* [Redux Thunk](https://github.com/gaearon/redux-thunk)
+* [Redux Form](https://github.com/erikras/redux-form)
+* [Material UI](http://www.material-ui.com)
+
+## Author
+
+* **Karol Zyskowski**
+
+Questions? Send an email to: k.zysk@zoho.com
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
