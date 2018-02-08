@@ -4,6 +4,7 @@ import { TextField } from "material-ui";
 import Moment from "moment";
 import momentLocalizer from "react-widgets-moment";
 import DateTimePicker from "react-widgets/lib/DateTimePicker";
+import DropdownList from "react-widgets/lib/DropdownList";
 import "react-widgets/dist/css/react-widgets.css";
 
 Moment.locale("en");
@@ -31,7 +32,7 @@ export default class FormFields extends Component {
 		showTime,
 		meta: { touched, error }
 	}) => {
-		console.log(error)
+		console.log(error);
 		return (
 			<div>
 				<DateTimePicker
@@ -46,7 +47,20 @@ export default class FormFields extends Component {
 		);
 	};
 
-	makeFields = ({ name, label, type }) => {
+	renderDropdownList = ({ input, data, valueField }) => {
+		console.log(input);
+		return (
+			<DropdownList
+				style={{ width: 400 }}
+				{...input}
+				data={data}
+				value={input.value ? input.value : data[0]}
+				onChange={input.onChange}
+			/>
+		);
+	};
+
+	makeFields = ({ name, label, type, data }) => {
 		return (
 			<div key={name}>
 				{type === "dateTime" ? (
@@ -55,6 +69,14 @@ export default class FormFields extends Component {
 						showTime
 						component={this.renderDateTimePicker}
 						label={label}
+					/>
+				) : type === "select" ? (
+					<Field
+						style={{ width: 400 }}
+						name={name}
+						component={this.renderDropdownList}
+						data={data}
+						valueField="value"
 					/>
 				) : (
 					<Field
