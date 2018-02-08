@@ -9,6 +9,7 @@ import { withRouter } from "react-router-dom";
 
 class TaskForm extends Component {
 	onFormSubmit = params => {
+		console.log(params)
 		this.props.saveTask(params, () => {
 			this.props.reset();
 			this.props.history.push("/blankpage");
@@ -16,7 +17,7 @@ class TaskForm extends Component {
 	};
 
 	render() {
-		const { fields, handleSubmit, history } = this.props;
+		const { fields, handleSubmit } = this.props;
 		return (
 			<div style={{ display: "flex", justifyContent: "center" }}>
 				<Card
