@@ -1,13 +1,13 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import App from "./App";
-import BlankRedirectPage from "./components/BlankRedirectPage";
+import RedirectPage from "./components/RedirectPage";
 
 export default () => {
 	return (
 		<div>
 			<Route exact path="/" component={App} />
-			<Route path="/blankpage" component={BlankRedirectPage} />
+			<Route path="/redirectpage" component={RedirectPage} />
 		</div>
 	);
 };

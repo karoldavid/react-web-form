@@ -32,7 +32,6 @@ export default class FormFields extends Component {
 		showTime,
 		meta: { touched, error }
 	}) => {
-		console.log(error);
 		return (
 			<div>
 				<DateTimePicker
@@ -47,8 +46,7 @@ export default class FormFields extends Component {
 		);
 	};
 
-	renderDropdownList = ({ label, input, data, valueField }) => {
-		console.log(input);
+	renderDropdownList = ({ label, input, data, valueField, meta: { touched, error } }) => {
 		return (
 			<div style={{marginTop: 20}}>
 			<label>{label}</label>
@@ -56,7 +54,7 @@ export default class FormFields extends Component {
 				style={{ width: 400, textTransform: "capitalize" }}
 				{...input}
 				data={data}
-				value={input[valueField] ? input[valueField] : data[0]}
+				value={input[valueField] ? input[valueField] : touched && error ? error : ""}
 				onChange={input.onChange}
 			/>
 			</div>

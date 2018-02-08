@@ -8,7 +8,8 @@ import { TASK_FORM_FIELDS } from "../utils/consts";
 const INITIAL_STATE = {
 	fields: TASK_FORM_FIELDS,
 	tasks: [],
-	msg: ""
+	message: "",
+	open: false
 };
 
 export default function(state = INITIAL_STATE, action) {
@@ -16,9 +17,9 @@ export default function(state = INITIAL_STATE, action) {
 		case FETCH_TASKS_SUCCESS:
 			return { ...state, tasks: action.payload };
 		case POST_TASK_SUCCESS:
-			return { ...state, msg: action.payload };
+			return { ...state, open: true, message: action.payload };
 		case POST_TASK_FAIL:
-			return { ...state, msg: action.payload };
+			return { ...state, open: true, message: action.payload };
 		default:
 			return state;
 	}
