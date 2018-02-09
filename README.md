@@ -2,6 +2,8 @@
 
 Creates a task and sends the form data to the backend.
 
+![Image of Admin Dashbord Create Task Form](client/src/img/admin-dashboard-create-task.jpg)
+
 ## Installing
 
 * Clone or download the repository
