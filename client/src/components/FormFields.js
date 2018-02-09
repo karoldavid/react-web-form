@@ -4,7 +4,6 @@ import { TextField, SelectField, MenuItem } from "material-ui";
 import Moment from "moment";
 import momentLocalizer from "react-widgets-moment";
 import DateTimePicker from "react-widgets/lib/DateTimePicker";
-import DropdownList from "react-widgets/lib/DropdownList";
 import "react-widgets/dist/css/react-widgets.css";
 
 Moment.locale("en");
@@ -33,16 +32,14 @@ export default class FormFields extends Component {
 		meta: { touched, error }
 	}) => {
 		return (
-			<div>
-				<DateTimePicker
-					style={{ width: 400 }}
-					onChange={onChange}
-					placeholder={error && touched ? error : label}
-					format="DD MMM YYYY HH:mm"
-					time={showTime}
-					value={!value ? null : new Date(value)}
-				/>
-			</div>
+			<DateTimePicker
+				style={{ width: 400 }}
+				onChange={onChange}
+				placeholder={error && touched ? error : label}
+				format="DD MMM YYYY HH:mm"
+				time={showTime}
+				value={!value ? null : new Date(value)}
+			/>
 		);
 	};
 
@@ -50,20 +47,17 @@ export default class FormFields extends Component {
 		input,
 		label,
 		data,
-		name,
 		valueField,
-		meta: { touched, error },
+		meta: { touched, error }
 	}) => {
 		return (
 			<SelectField
 				style={{ textTransform: "capitalize" }}
-				name={name}
 				hintText={label}
 				floatingLabelText={label}
 				errorText={touched && error}
 				value={input.value}
 				onChange={(event, index, value) => {
-					console.log(value);
 					input.onChange(value);
 				}}
 			>
@@ -76,7 +70,7 @@ export default class FormFields extends Component {
 
 	makeFields = ({ name, label, type, data }) => {
 		return (
-			<div key={name} style={{ width: 400 }}>
+			<div key={name}>
 				{type === "dateTime" ? (
 					<Field
 						name={name}
@@ -86,13 +80,13 @@ export default class FormFields extends Component {
 					/>
 				) : type === "select" ? (
 					<Field
+						style={{ width: 400 }}
 						name={name}
 						component={this.renderSelectField}
 						hintText={label}
 						label={label}
 						data={data}
 						valueField="value"
-						//errorText={touched && error}
 					/>
 				) : (
 					<Field
