@@ -3,7 +3,9 @@ import { Field } from "redux-form";
 import { TextField, SelectField, MenuItem } from "material-ui";
 import Moment from "moment";
 import momentLocalizer from "react-widgets-moment";
-import DateTimePicker from "react-widgets/lib/DateTimePicker";
+import DateTimePicker from "material-ui-datetimepicker";
+import DatePickerDialog from "material-ui/DatePicker/DatePickerDialog";
+import TimePickerDialog from "material-ui/TimePicker/TimePickerDialog";
 import "react-widgets/dist/css/react-widgets.css";
 
 Moment.locale("en");
@@ -28,17 +30,17 @@ export default class FormFields extends Component {
 	renderDateTimePicker = ({
 		input: { onChange, value },
 		label,
-		showTime,
 		meta: { touched, error }
 	}) => {
 		return (
 			<DateTimePicker
-				style={{ width: 400 }}
+				floatingLabelText={label}
+				DatePicker={DatePickerDialog}
+				TimePicker={TimePickerDialog}
 				onChange={onChange}
-				placeholder={error && touched ? error : label}
-				format="DD MMM YYYY HH:mm"
-				time={showTime}
-				value={!value ? null : new Date(value)}
+				format="DD MMM YYYY HH:mm A"
+				value={new Date()}
+				errorText={touched && error}
 			/>
 		);
 	};
@@ -80,7 +82,6 @@ export default class FormFields extends Component {
 					/>
 				) : type === "select" ? (
 					<Field
-						style={{ width: 400 }}
 						name={name}
 						component={this.renderSelectField}
 						hintText={label}
