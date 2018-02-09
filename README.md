@@ -7,11 +7,11 @@ Creates a task and sends the form data to the backend.
 ## Installing
 
 * Clone or download the repository
-* `cd`into the project direcetory
+* `cd`into the project directory
 * Run `npm install` to install dependencies
 * `cd` into the client directory (./client/)
 * Run `npm install` to install dependencies
-* Run `npm run dev` to start the server and the app
+* At the project's root level run `npm run dev` to start the server and the app
 * In your browser's address bar navigate to `localhost:3000`
 
 ## Servers
