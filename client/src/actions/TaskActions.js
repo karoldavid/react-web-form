@@ -16,7 +16,6 @@ export const saveTask = (task, callback) => dispatch => {
 	api
 		.saveTask(task)
 		.then(response => {
-			console.log(response)
 			if (!response.error) {
 				dispatch({
 					type: POST_TASK_SUCCESS,
@@ -35,7 +34,7 @@ export const saveTask = (task, callback) => dispatch => {
 };
 
 export const closeSnackbar = () => {
-	return{
+	return {
 		type: MESSAGE_CLOSE
-	}
-}
+	};
+};

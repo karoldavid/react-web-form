@@ -1,18 +1,31 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Snackbar } from "material-ui";
+import * as actions from "./actions";
 import "./App.css";
-import TaskForm from "./components/TaskForm";
 
 class App extends Component {
   render() {
-    return <TaskForm fields={this.props.fields} />;
+    const { closeSnackbar, message, open } = this.props;
+    return (
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        {this.props.children}
+        <Snackbar
+          open={open}
+          message={message}
+          autoHideDuration={3000}
+          onRequestClose={closeSnackbar}
+        />
+      </div>
+    );
   }
 }
 
-const mapStateToProps = ({ task: { fields } }) => {
+const mapStateToProps = ({ task: { message, open } }) => {
   return {
-    fields
+    message,
+    open
   };
 };
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, actions)(App);

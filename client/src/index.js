@@ -7,12 +7,15 @@ import registerServiceWorker from "./registerServiceWorker";
 import { MuiThemeProvider } from "material-ui";
 import { BrowserRouter } from "react-router-dom";
 import Routes from "./Routes";
+import App from "./App";
 
 ReactDOM.render(
 	<Provider store={store}>
 		<MuiThemeProvider>
 			<BrowserRouter>
-				<Routes />
+				<App>
+					<Routes />
+				</App>
 			</BrowserRouter>
 		</MuiThemeProvider>
 	</Provider>,

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { reduxForm } from "redux-form";
 import FormFields from "./FormFields";
-import { Card, CardTitle, RaisedButton, Snackbar } from "material-ui";
+import { Card, CardTitle, RaisedButton } from "material-ui";
 import { validate } from "../utils/helpers";
 import * as actions from "../actions";
 import { withRouter } from "react-router-dom";
@@ -16,9 +16,9 @@ class TaskForm extends Component {
 	};
 
 	render() {
-		const { fields, handleSubmit, message, open } = this.props;
+		const { fields, handleSubmit } = this.props;
 		return (
-			<div style={{ display: "flex", justifyContent: "center" }}>
+			<div>
 				<Card
 					style={{
 						marginTop: 20,
@@ -48,22 +48,13 @@ class TaskForm extends Component {
 						</div>
 					</form>
 				</Card>
-				<Snackbar
-					open={open}
-					message={message}
-					autoHideDuration={5000}
-					onRequestClose={() => this.props.closeSnackbar()}
-				/>
 			</div>
 		);
 	}
 }
 
-const mapStateToProps = ({ task: { message, open, initialValues } }) => {
-	console.log(initialValues);
+const mapStateToProps = ({ task: { initialValues } }) => {
 	return {
-		message,
-		open,
 		initialValues
 	};
 };
