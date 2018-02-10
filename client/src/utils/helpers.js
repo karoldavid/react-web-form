@@ -28,3 +28,5 @@ export const validate = (values, props) => {
 
 	return errors;
 };
+
+export const lower = value => value && value.toLowerCase();

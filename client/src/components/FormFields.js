@@ -4,8 +4,7 @@ import { TextField, SelectField, MenuItem } from "material-ui";
 import DateTimePicker from "material-ui-datetimepicker";
 import DatePickerDialog from "material-ui/DatePicker/DatePickerDialog";
 import TimePickerDialog from "material-ui/TimePicker/TimePickerDialog";
-
-const lower = value => value && value.toLowerCase();
+import { lower } from "../utils/helpers";
 
 export default class FormFields extends Component {
 	renderTextField = ({
@@ -34,7 +33,7 @@ export default class FormFields extends Component {
 				floatingLabelText={label}
 				DatePicker={DatePickerDialog}
 				TimePicker={TimePickerDialog}
-				format="DD MMM YYYY HH:mm A"
+				format="DD MMM YYYY HH:mm"
 				value={!value ? new Date() : new Date(value)}
 				errorText={touched && error}
 			/>
