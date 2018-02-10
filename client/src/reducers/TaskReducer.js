@@ -1,8 +1,7 @@
 import {
 	FETCH_TASKS_SUCCESS,
-	POST_TASK_SUCCESS,
-	POST_TASK_FAIL,
-	MESSAGE_CLOSE
+	MESSAGE_CLOSE,
+	MESSAGE_SHOW
 } from "../actions/types";
 import { TASK_FORM_FIELDS } from "../utils/consts";
 
@@ -20,9 +19,7 @@ export default function(state = INITIAL_STATE, action) {
 	switch (action.type) {
 		case FETCH_TASKS_SUCCESS:
 			return { ...state, tasks: action.payload };
-		case POST_TASK_SUCCESS:
-			return { ...state, open: true, message: action.payload };
-		case POST_TASK_FAIL:
+		case MESSAGE_SHOW:
 			return { ...state, open: true, message: action.payload };
 		case MESSAGE_CLOSE:
 			return { ...state, open: false, message: "" };

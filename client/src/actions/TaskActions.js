@@ -1,9 +1,8 @@
 import * as api from "../utils/api";
 import {
 	FETCH_TASKS_SUCCESS,
-	POST_TASK_SUCCESS,
-	POST_TASK_FAIL,
-	MESSAGE_CLOSE
+	MESSAGE_CLOSE,
+	MESSAGE_SHOW
 } from "./types";
 
 export const fetchTasks = () => dispatch => {
@@ -18,13 +17,13 @@ export const saveTask = (task, callback) => dispatch => {
 		.then(response => {
 			if (!response.error) {
 				dispatch({
-					type: POST_TASK_SUCCESS,
+					type: MESSAGE_SHOW,
 					payload: "Form successfully submitted!"
 				});
 				callback();
 			} else {
 				dispatch({
-					type: POST_TASK_FAIL,
+					type: MESSAGE_SHOW,
 					payload: "Form sumbission failed."
 				});
 				console.error(response.error);
