@@ -52,20 +52,27 @@ class TaskForm extends Component {
 					open={open}
 					message={message}
 					autoHideDuration={5000}
+					onRequestClose={() => this.props.closeSnackbar()}
 				/>
 			</div>
 		);
 	}
 }
 
-const mapStateToProps = ({ task: { message, open } }) => {
+const mapStateToProps = ({ task: { message, open, initialValues } }) => {
+	console.log(initialValues);
 	return {
 		message,
-		open
+		open,
+		initialValues
 	};
 };
 
-export default reduxForm({
-	form: "taskForm",
+TaskForm = reduxForm({
+	form: "initializeFromState",
 	validate
-})(withRouter(connect(mapStateToProps, actions)(TaskForm)));
+})(TaskForm);
+
+TaskForm = connect(mapStateToProps, actions)(TaskForm);
+
+export default withRouter(TaskForm);

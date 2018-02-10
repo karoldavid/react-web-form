@@ -1,15 +1,11 @@
 import React, { Component } from "react";
 import { Field } from "redux-form";
 import { TextField, SelectField, MenuItem } from "material-ui";
-import Moment from "moment";
-import momentLocalizer from "react-widgets-moment";
 import DateTimePicker from "material-ui-datetimepicker";
 import DatePickerDialog from "material-ui/DatePicker/DatePickerDialog";
 import TimePickerDialog from "material-ui/TimePicker/TimePickerDialog";
-import "react-widgets/dist/css/react-widgets.css";
 
-Moment.locale("en");
-momentLocalizer();
+const lower = value => value && value.toLowerCase();
 
 export default class FormFields extends Component {
 	renderTextField = ({
@@ -34,12 +30,12 @@ export default class FormFields extends Component {
 	}) => {
 		return (
 			<DateTimePicker
+				onChange={onChange}
 				floatingLabelText={label}
 				DatePicker={DatePickerDialog}
 				TimePicker={TimePickerDialog}
-				onChange={onChange}
 				format="DD MMM YYYY HH:mm A"
-				value={new Date()}
+				value={!value ? new Date() : new Date(value)}
 				errorText={touched && error}
 			/>
 		);
@@ -58,13 +54,18 @@ export default class FormFields extends Component {
 				hintText={label}
 				floatingLabelText={label}
 				errorText={touched && error}
-				value={input.value}
+				value={input[valueField]}
 				onChange={(event, index, value) => {
 					input.onChange(value);
 				}}
 			>
 				{data.map((item, index) => (
-					<MenuItem key={index} value={item} primaryText={item} />
+					<MenuItem
+						style={{ textTransform: "capitalize" }}
+						key={index}
+						value={item}
+						primaryText={item}
+					/>
 				))}
 			</SelectField>
 		);
@@ -76,7 +77,6 @@ export default class FormFields extends Component {
 				{type === "dateTime" ? (
 					<Field
 						name={name}
-						showTime
 						component={this.renderDateTimePicker}
 						label={label}
 					/>
@@ -88,6 +88,7 @@ export default class FormFields extends Component {
 						label={label}
 						data={data}
 						valueField="value"
+						normalize={lower}
 					/>
 				) : (
 					<Field

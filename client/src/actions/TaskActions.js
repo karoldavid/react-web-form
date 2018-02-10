@@ -2,7 +2,8 @@ import * as api from "../utils/api";
 import {
 	FETCH_TASKS_SUCCESS,
 	POST_TASK_SUCCESS,
-	POST_TASK_FAIL
+	POST_TASK_FAIL,
+	MESSAGE_CLOSE
 } from "./types";
 
 export const fetchTasks = () => dispatch => {
@@ -32,3 +33,9 @@ export const saveTask = (task, callback) => dispatch => {
 		})
 		.catch(error => console.error(error));
 };
+
+export const closeSnackbar = () => {
+	return{
+		type: MESSAGE_CLOSE
+	}
+}

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Snackbar } from "material-ui";
+import * as actions from "../actions";
 
 class RedirectPage extends Component {
 	render() {
@@ -11,6 +12,7 @@ class RedirectPage extends Component {
 					open={open}
 					message={message}
 					autoHideDuration={5000}
+					onRequestClose={this.props.closeSnackbar}
 				/>
 			</div>
 		);
@@ -24,4 +26,4 @@ const mapStateToProps = ({ task: { message, open } }) => {
 	};
 };
 
-export default connect(mapStateToProps)(RedirectPage);
+export default connect(mapStateToProps, actions)(RedirectPage);
